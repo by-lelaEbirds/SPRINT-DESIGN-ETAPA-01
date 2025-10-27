@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apresentação do Sprint Design - Etapa 1: Entender o Problema da Vacinação Infantil">
+    <title>Sprint Design - Vacinação Infantil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>Sprint Design - Etapa 1</h1>
+                <p class="subtitle">Entender o Problema da Vacinação Infantil</p>
+            </div>
+            <div class="course-info">
+                <p><strong>Curso:</strong> Negócios Digitais</p>
+                <p><strong>Alunos:</strong> Arthur Uady, Eduardo Belli, Luiz Felipe e Matheus Peres</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button class="nav-btn active" data-section="problema">Problema</button>
+            <button class="nav-btn" data-section="causas">Causas</button>
+            <button class="nav-btn" data-section="solucoes">Soluções</button>
+            <button class="nav-btn" data-section="stakeholders">Stakeholders</button>
+            <button class="nav-btn" data-section="hmw">HMW</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Problema Section -->
+            <section id="problema" class="content-section active">
+                <h2>Problema Central</h2>
+                <article class="card">
+                    <p>A queda progressiva e alarmante nas taxas de cobertura vacinal infantil no Brasil (e em várias partes do mundo) nos últimos anos.</p>
+                    <p>O país, que já foi referência mundial em imunização através do <strong>Programa Nacional de Imunizações (PNI)</strong>, hoje enfrenta dificuldades para atingir as metas mínimas (90-95%) para diversas vacinas do calendário básico, como pólio, sarampo (Tríplice Viral) e BCG.</p>
+                </article>
+            </section>
+
+            <!-- Causas Section -->
+            <section id="causas" class="content-section">
+                <h2>Causas do Problema</h2>
+                
+                <article class="card">
+                    <h3>1. Hesitação Vacinal e Desinformação</h3>
+                    <ul>
+                        <li><strong>Fake News:</strong> Disseminação maciça de informações falsas (principalmente via redes sociais e aplicativos de mensagem) sobre segurança e eficácia das vacinas.</li>
+                        <li><strong>Movimentos Antivacina:</strong> Grupos organizados promovem desconfiança, ligando vacinas a condições como autismo (fraude cientificamente refutada) ou alegando substâncias perigosas.</li>
+                        <li><strong>Medo de Reações:</strong> Supervalorização de reações adversas leves (febre, dor local) em detrimento dos benefícios.</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>2. Dificuldades de Acesso e Logística</h3>
+                    <ul>
+                        <li><strong>Horário dos Postos:</strong> Muitas Unidades Básicas de Saúde (UBS) funcionam apenas em horário comercial, conflitando com o horário de trabalho dos pais.</li>
+                        <li><strong>Falta de Doses:</strong> Problemas na distribuição ou estoque de imunizantes em postos específicos.</li>
+                        <li><strong>Complexidade do Calendário:</strong> Calendário infantil extenso pode confundir pais sobre quais doses faltam.</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>3. Falhas no Sistema e Percepção de Risco</h3>
+                    <ul>
+                        <li><strong>Falsa Sensação de Segurança:</strong> Como muitas doenças foram erradicadas, novas gerações não viram o impacto, diminuindo percepção de risco.</li>
+                        <li><strong>Falhas no Registro:</strong> Perda de carteirinha de papel, falhas no ConecteSUS, dados incompletos ou dificuldade de acesso.</li>
+                        <li><strong>Busca Ativa Insuficiente:</strong> Agentes de saúde prejudicados por falta de pessoal ou sobrecarga do sistema.</li>
+                    </ul>
+                </article>
+            </section>
+
+            <!-- Soluções Section -->
+            <section id="solucoes" class="content-section">
+                <h2>Soluções, Produtos e Serviços Similares</h2>
+                
+                <article class="card">
+                    <h3>1. Plataformas Governamentais</h3>
+                    <p><strong>ConecteSUS</strong> - Aplicativo oficial do Ministério da Saúde que funciona como Carteira de Vacinação Digital, permitindo visualizar doses aplicadas, emitir certificados e acompanhar o calendário.</p>
+                </article>
+
+                <article class="card">
+                    <h3>2. Aplicativos Privados de Gestão de Saúde</h3>
+                    <p>Apps como "Vacinas em Dia", "Minha Carteira de Vacinação" e "Baby+" focados na experiência do usuário. Permitem registro manual de doses, criam lembretes automáticos e oferecem conteúdo informativo sobre cada vacina.</p>
+                </article>
+
+                <article class="card">
+                    <h3>3. Sistemas de Clínicas e Hospitais</h3>
+                    <p>Prontuários Eletrônicos (MV, Tasy, sistemas próprios) para gestão interna. Clínicas privadas possuem sistemas robustos de agendamento e lembretes via SMS ou WhatsApp.</p>
+                </article>
+
+                <article class="card">
+                    <h3>4. Iniciativas de Comunicação e Busca Ativa</h3>
+                    <p>Campanhas de multivacinação, parcerias com escolas e programas de busca ativa por Agentes Comunitários de Saúde (ACS) para aumentar conscientização e resgatar crianças com calendário atrasado.</p>
+                </article>
+            </section>
+
+            <!-- Stakeholders Section -->
+            <section id="stakeholders" class="content-section">
+                <h2>Stakeholders e Necessidades</h2>
+                
+                <article class="card">
+                    <h3>Pais e Responsáveis</h3>
+                    <ul>
+                        <li>Manter a saúde do filho protegida contra doenças graves</li>
+                        <li>Cumprir o calendário vacinal sem esquecer prazos</li>
+                        <li>Ter acesso fácil e rápido ao histórico de vacinas</li>
+                        <li>Entender por que cada vacina é importante e segura</li>
+                        <li>Superar barreiras logísticas</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Profissionais de Saúde</h3>
+                    <ul>
+                        <li>Ter acesso imediato ao histórico vacinal do paciente</li>
+                        <li>Registrar doses aplicadas de forma rápida e segura</li>
+                        <li>Identificar crianças com calendário atrasado</li>
+                        <li>Ter material de apoio confiável para combater desinformação</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Gestores de Saúde Pública</h3>
+                    <ul>
+                        <li>Aumentar taxas de cobertura vacinal</li>
+                        <li>Ter dados epidemiológicos precisos em tempo real</li>
+                        <li>Otimizar logística de distribuição e estoque</li>
+                        <li>Realizar campanhas de comunicação eficazes</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Escolas, Creches e Clínicas Privadas</h3>
+                    <ul>
+                        <li>Garantir ambiente seguro para todos os alunos</li>
+                        <li>Cumprir legislação sobre carteira de vacinação</li>
+                        <li>Simplificar verificação da situação vacinal</li>
+                        <li>Manter clientes fidelizados através de lembretes</li>
+                    </ul>
+                </article>
+            </section>
+
+            <!-- HMW Section -->
+            <section id="hmw" class="content-section">
+                <h2>How Might We? (HMW)</h2>
+                <p class="hmw-intro">Perguntas provocadoras para guiar a inovação:</p>
+                
+                <div class="hmw-grid">
+                    <article class="hmw-card">
+                        <p>Como nós podemos transformar a carteira de vacinação em algo tão fácil de usar e verificar quanto um comprovante de pagamento digital (Pix)?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos entregar informações confiáveis sobre segurança de vacinas no exato momento em que os pais pesquisam por fake news?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos usar a gamificação (jogos/recompensas) para incentivar os pais a completar 100% do calendário vacinal dos filhos?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos facilitar o agendamento da vacinação em horários alternativos (noite/fins de semana) para pais que trabalham em horário comercial?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos criar um sistema de lembrete que não seja apenas uma notificação, mas que ajude o responsável a se organizar logisticamente?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos automatizar a verificação da carteira de vacinação para as escolas, tirando esse fardo administrativo?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos ajudar os agentes de saúde a otimizar a rota de "busca ativa", sabendo exatamente quais crianças precisam de quais vacinas?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos unificar os registros de vacinas de clínicas privadas e postos públicos em tempo real?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos transformar a experiência de vacinação no posto em algo mais acolhedor e positivo?</p>
+                    </article>
+
+                    <article class="hmw-card">
+                        <p>Como nós podemos conectar pais "pró-vacina" com pais hesitantes de forma empática, criando uma rede de confiança?</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Sprint Design - Negócios Digitais. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
