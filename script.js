@@ -133,4 +133,3 @@ window.SprintDesign = {
     printPage,
     logEvent
 };
-
