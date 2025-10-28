@@ -8,19 +8,21 @@
     --accent-color: #e74c3c;
     --success-color: #27ae60;
     --warning-color: #f39c12;
-    --light-bg: #ecf0f1;
+    --light-bg: #f5f5f7; /* Cor de fundo padrão Apple */
     --white: #ffffff;
-    --text-dark: #2c3e50;
-    --text-light: #7f8c8d;
-    --border-color: #bdc3c7;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --text-dark: #1d1d1f; /* Cor de texto principal Apple */
+    --text-light: #515154; /* Cor de texto secundária */
+    --border-color: #d2d2d7;
+    
+    /* Sombras suaves e premium */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
     
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
+    --spacing-lg: 2rem; /* Aumentado para mais respiro */
+    --spacing-xl: 3.5rem; /* Aumentado para mais respiro */
     
     --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-size-base: 16px;
@@ -29,8 +31,13 @@
     --font-size-xl: 24px;
     --font-size-2xl: 32px;
     
-    --border-radius: 8px;
-    --transition: all 0.3s ease;
+    /* Cantos arredondados "Apple" */
+    --border-radius-sm: 8px;
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    
+    /* Transição suave "Pro" */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -49,6 +56,9 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--light-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: var(--spacing-lg) 0; /* Espaço para o container flutuar */
 }
 
 /* ============================================
@@ -56,11 +66,16 @@ body {
    ============================================ */
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    
+    /* Efeito "App" encapsulado */
+    background-color: var(--white);
+    border-radius: 20px; /* Arredondamento principal */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    overflow: hidden; /* Para conter os cantos arredondados */
 }
 
 /* ============================================
@@ -72,7 +87,6 @@ body {
     color: var(--white);
     padding: var(--spacing-xl) var(--spacing-lg);
     text-align: center;
-    box-shadow: var(--shadow-lg);
 }
 
 .header-content h1 {
@@ -99,7 +113,7 @@ body {
 }
 
 /* ============================================
-   NAVEGAÇÃO
+   NAVEGAÇÃO (EFEITO VIDRO FOSCO)
    ============================================ */
 
 .navigation {
@@ -107,21 +121,26 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-lg);
-    background-color: var(--white);
-    border-bottom: 2px solid var(--border-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    
+    /* Efeito Vidro Fosco */
+    background-color: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow);
 }
 
+/* Botões "Pill" */
 .nav-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 2px solid var(--secondary-color);
-    background-color: var(--white);
-    color: var(--secondary-color);
-    border-radius: var(--border-radius);
+    padding: 0.6rem 1.25rem;
+    border: none;
+    background-color: transparent;
+    color: var(--text-light);
+    border-radius: 99px; /* Formato pílula */
     cursor: pointer;
     font-size: var(--font-size-base);
     font-weight: 600;
@@ -129,15 +148,16 @@ body {
 }
 
 .nav-btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    transform: translateY(-2px);
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    transform: translateY(0); /* Remove efeito de pulo */
 }
 
 .nav-btn.active {
     background-color: var(--secondary-color);
     color: var(--white);
-    box-shadow: var(--shadow);
+    /* Sombra sutil para destacar */
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
 }
 
 /* ============================================
@@ -146,12 +166,12 @@ body {
 
 .main-content {
     flex: 1;
-    padding: var(--spacing-xl) var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-xl);
 }
 
 .content-section {
     display: none;
-    animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .content-section.active {
@@ -161,7 +181,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -174,26 +194,27 @@ body {
     color: var(--primary-color);
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-md);
-    border-bottom: 3px solid var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    font-weight: 700;
 }
 
 /* ============================================
-   CARDS
+   CARDS (DESIGN PREMIUM)
    ============================================ */
 
 .card {
     background-color: var(--white);
-    border-left: 4px solid var(--secondary-color);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg); /* 16px */
     box-shadow: var(--shadow);
     transition: var(--transition);
 }
 
 .card:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateX(4px);
+    transform: translateY(-4px); /* Efeito de elevação sutil */
 }
 
 .card h3 {
@@ -201,6 +222,7 @@ body {
     color: var(--primary-color);
     margin-bottom: var(--spacing-md);
     margin-top: 0;
+    font-weight: 600;
 }
 
 .card p {
@@ -216,22 +238,41 @@ body {
 .card ul {
     list-style: none;
     padding: 0;
+    margin-top: var(--spacing-sm);
 }
 
 .card li {
     padding: var(--spacing-sm) 0;
-    padding-left: var(--spacing-lg);
+    padding-left: calc(var(--spacing-lg) + 10px); /* 24px + 10px */
     position: relative;
     color: var(--text-dark);
     line-height: 1.8;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
 }
 
+/* Ícone de lista moderno */
 .card li:before {
-    content: "→";
+    content: "✓";
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background-color: rgba(52, 152, 219, 0.15); /* Fundo azul claro */
     color: var(--secondary-color);
+    
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
     font-weight: bold;
+    font-size: 14px;
 }
 
 .card strong {
@@ -258,22 +299,24 @@ body {
 }
 
 .hmw-card {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--primary-color); /* Fundo sólido */
     color: var(--white);
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg); /* 16px */
     box-shadow: var(--shadow);
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 150px;
+    min-height: 180px;
     text-align: center;
 }
 
+/* Efeito de hover inovado: revela o gradiente */
 .hmw-card:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .hmw-card p {
@@ -288,12 +331,13 @@ body {
    ============================================ */
 
 .footer {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--light-bg); /* Separador visual */
+    color: var(--text-light);
     text-align: center;
     padding: var(--spacing-lg);
     margin-top: auto;
     font-size: var(--font-size-sm);
+    border-top: 1px solid var(--border-color);
 }
 
 /* ============================================
@@ -302,22 +346,24 @@ body {
 
 @media (max-width: 768px) {
     :root {
-        --font-size-base: 14px;
-        --font-size-2xl: 24px;
+        --font-size-base: 15px;
+        --font-size-2xl: 26px;
         --spacing-lg: 1.5rem;
-        --spacing-xl: 1.5rem;
+        --spacing-xl: 2.5rem;
+    }
+    
+    body {
+        padding: 0; /* Remove padding em telas menores */
+    }
+
+    .container {
+        border-radius: 0; /* Container ocupa a tela inteira */
+        margin: 0;
+        box-shadow: none;
     }
 
     .header {
-        padding: var(--spacing-lg) var(--spacing-md);
-    }
-
-    .header-content h1 {
-        font-size: var(--font-size-xl);
-    }
-
-    .header .subtitle {
-        font-size: var(--font-size-base);
+        padding: var(--spacing-xl) var(--spacing-md);
     }
 
     .navigation {
@@ -326,7 +372,7 @@ body {
     }
 
     .nav-btn {
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: 0.5rem 1rem;
         font-size: var(--font-size-sm);
     }
 
@@ -340,60 +386,49 @@ body {
 
     .card {
         padding: var(--spacing-md);
-        margin-bottom: var(--spacing-md);
+        border-radius: var(--border-radius); /* 12px */
     }
 
     .hmw-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
     }
-
-    .hmw-card {
-        min-height: 120px;
-        padding: var(--spacing-md);
-    }
 }
 
 @media (max-width: 480px) {
     :root {
-        --font-size-base: 13px;
-        --font-size-2xl: 20px;
-        --spacing-lg: 1rem;
+        --font-size-base: 14px;
+        --font-size-2xl: 22px;
+        --spacing-lg: 1.5rem;
         --spacing-md: 1rem;
     }
 
     .header-content h1 {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-xl);
     }
 
     .header .subtitle {
-        font-size: var(--font-size-sm);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .course-info {
-        font-size: 12px;
+        font-size: var(--font-size-base);
     }
 
     .navigation {
-        flex-direction: column;
         padding: var(--spacing-md);
+        /* Permite rolagem horizontal dos botões se não couberem */
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
     }
-
+    
     .nav-btn {
-        width: 100%;
+        flex-shrink: 0; /* Impede que os botões encolham */
     }
 
     .main-content {
-        padding: var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md);
     }
-
-    .card {
-        padding: var(--spacing-md);
-    }
-
+    
     .card li {
-        padding-left: var(--spacing-md);
+        padding-left: calc(var(--spacing-md) + 10px + 24px);
     }
 }
 
@@ -409,21 +444,58 @@ body {
     }
 }
 
+/* DARK MODE (Padrão Apple) */
 @media (prefers-color-scheme: dark) {
     :root {
-        --light-bg: #1a1a1a;
-        --white: #2d2d2d;
-        --text-dark: #ecf0f1;
-        --text-light: #bdc3c7;
-        --border-color: #444;
+        --light-bg: #000000; /* Fundo preto real */
+        --white: #1c1c1e; /* "Papel" escuro Apple */
+        --text-dark: #ffffff;
+        --text-light: #8e8e93; /* Texto secundário Apple */
+        --border-color: #3a3a3c; /* Divisor Apple */
     }
 
     body {
-        background-color: #0f0f0f;
+        background-color: var(--light-bg);
+    }
+
+    .container {
+        background-color: var(--white);
+        box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05); /* Brilho sutil */
+    }
+
+    .navigation {
+        background-color: rgba(28, 28, 30, 0.75); /* Blur escuro */
+        border-bottom-color: var(--border-color);
+    }
+    
+    .nav-btn:hover {
+        background-color: #2c2c2e; /* Hover escuro */
+        color: var(--text-dark);
+    }
+
+    .nav-btn.active {
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.5); /* Sombra mais vibrante */
     }
 
     .card {
-        background-color: var(--white);
-        border-left-color: var(--secondary-color);
+        background-color: #2c2c2e; /* Cor de card escuro */
+        border-color: var(--border-color);
+    }
+    
+    .card li:before {
+        background-color: rgba(52, 152, 219, 0.2);
+    }
+
+    .hmw-card {
+        background: #2c2c2e;
+    }
+    
+    .hmw-card:hover {
+        /* Mantém o efeito de hover */
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    }
+    
+    .footer {
+        background-color: var(--white); /* Mesmo fundo do container */
     }
 }
