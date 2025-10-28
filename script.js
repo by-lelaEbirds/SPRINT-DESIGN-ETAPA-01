@@ -3,6 +3,10 @@
  * Script para gerenciar navegação e interatividade
  */
 
+// <<< CORREÇÃO: Flags para controlar o estado da rolagem
+let isClickScrolling = false;
+let scrollTimeout;
+
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeScrollBehavior();
@@ -17,6 +21,9 @@ function initializeNavigation() {
 
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
+            // <<< CORREÇÃO: Avisa que o clique iniciou uma rolagem
+            isClickScrolling = true;
+            
             const targetSection = this.getAttribute('data-section');
             
             // Remove classe active de todos os botões
@@ -25,7 +32,7 @@ function initializeNavigation() {
             // Remove classe active de todas as seções
             contentSections.forEach(section => section.classList.remove('active'));
             
-            // Adiciona classe active ao botão clicado
+            // Adiciona classe active ao botão clicado (ESTA É A PARTE CERTA)
             this.classList.add('active');
             
             // Adiciona classe active à seção correspondente
@@ -36,7 +43,17 @@ function initializeNavigation() {
                 // Scroll suave para o topo da seção
                 setTimeout(() => {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // <<< CORREÇÃO: Reseta o "aviso" após a animação de rolagem terminar
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        isClickScrolling = false;
+                    }, 750); // 750ms é um tempo seguro para a animação 'smooth' acabar
+                    
                 }, 100);
+            } else {
+                // <<< CORREÇÃO: Reseta se o alvo não for encontrado
+                isClickScrolling = false;
             }
         });
     });
@@ -46,17 +63,32 @@ function initializeNavigation() {
  * Inicializa comportamento de scroll para destacar seção ativa
  */
 function initializeScrollBehavior() {
-    const sections = document.querySelectorAll('.content-section');
     const navButtons = document.querySelectorAll('.nav-btn');
+    // A lógica de scroll-spy (rolagem manual) ainda é incompatível
+    // com 'display: none', mas esta correção impede que ela
+    // quebre a navegação por clique.
 
     window.addEventListener('scroll', function() {
+        // <<< CORREÇÃO: Se a rolagem foi causada pelo clique, ignora esta função.
+        if (isClickScrolling) {
+            return;
+        }
+
+        // A lógica de scroll-spy (rolagem manual) não pode funcionar
+        // corretamente enquanto as seções usam 'display: none'.
+        // Deixamos a função aqui para que a rolagem manual
+        // não quebre o clique, mas ela não atualizará ativamente
+        // o botão durante o scroll manual (o que já não fazia).
+        
+        // --- Início da lógica original (quebrada pelo 'display: none') ---
+        const sections = document.querySelectorAll('.content-section');
         let current = '';
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             
-            if (scrollY >= sectionTop - 200) {
+            // O problema: 'section.clientHeight' é 0 para seções com 'display: none'
+            if (section.clientHeight > 0 && scrollY >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
         });
@@ -67,6 +99,7 @@ function initializeScrollBehavior() {
                 button.classList.add('active');
             }
         });
+        // --- Fim da lógica original ---
     });
 }
 
